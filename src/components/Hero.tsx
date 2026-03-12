@@ -26,19 +26,20 @@ export const Hero: React.FC = () => {
             I’m pursuing my MCA at MIT World Peace University, Pune, and hold a B.Sc. in Computer Science (CGPA: 8.42) from KVN Naik College, Nashik. Skilled in Java, Spring Boot, SQL, and Web Development, I love creating practical, scalable, and user-focused solutions.
           </p>
           
-          <div className="flex flex-wrap gap-4 mb-10 md:mb-12">
+          <div className="flex flex-wrap md:flex-nowrap gap-4 mb-10 md:mb-12">
             <a
               href="#education"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+              className="flex-1 md:flex-none min-w-[140px] px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               View Journey <ChevronDown size={18} />
             </a>
-            <a href="Yadnyesh_Resume.pdf" target ="_blank">  <button
-              className="px-6 py-3 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white rounded-lg font-medium transition-all flex items-center gap-2 backdrop-blur-sm"
-              
+            <a 
+              href="Yadnyesh_Resume.pdf" 
+              target ="_blank"
+              className="flex-1 md:flex-none min-w-[140px] px-6 py-3 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white rounded-lg font-medium transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
             >
               Download Resume <Download size={18} />
-            </button></a>
+            </a>
           </div>
 
           <div className="flex gap-6">
@@ -48,9 +49,7 @@ export const Hero: React.FC = () => {
             <a href="https://github.com/YadnyeshSawant" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
               <Github size={24} />
             </a>
-            <a href="https://yadnyeshsawant.github.io/Portfolio_YadnyeshSawant/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
-              <Globe size={24} />
-            </a>
+            
           </div>
         </motion.div>
 

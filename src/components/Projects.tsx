@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FolderGit2, ExternalLink, Github, Code2, Calendar, User, CheckCircle2, X, Image as ImageIcon, Linkedin, Users, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FolderGit2, ExternalLink, Github, Code2, Calendar, User, CheckCircle2, Clock, X, Image as ImageIcon, Linkedin, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import bookAndJoyScreenshots from '../data/bookandjoyimages.json';
 import wellnessTrackerScreenshots from '../data/wellnesstrackerimages.json';
 import executorScreenshots from '../data/executorimages.json';
@@ -175,6 +175,14 @@ export const Projects: React.FC = () => {
                   <span className="px-2.5 py-1 bg-blue-500/20 backdrop-blur-md border border-blue-500/30 text-blue-300 text-xs font-medium rounded-md flex items-center gap-1">
                     <Code2 size={12} /> {project.role}
                   </span>
+                  <span className={`px-2.5 py-1 backdrop-blur-md border text-xs font-medium rounded-md flex items-center gap-1 ${
+                    project.status === 'Completed' 
+                      ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-300' 
+                      : 'bg-amber-500/20 border-amber-500/30 text-amber-300'
+                  }`}>
+                    {project.status === 'Completed' ? <CheckCircle2 size={12} /> : <Clock size={12} />}
+                    {project.status}
+                  </span>
                 </div>
               </div>
 
@@ -278,8 +286,13 @@ export const Projects: React.FC = () => {
                     <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 text-blue-300 text-sm font-medium rounded-full flex items-center gap-1.5 w-fit backdrop-blur-md">
                       <User size={14} /> {selectedProject.role}
                     </span>
-                    <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-medium rounded-full flex items-center gap-1.5 w-fit backdrop-blur-md">
-                      <CheckCircle2 size={14} /> {selectedProject.status}
+                    <span className={`px-3 py-1 border text-sm font-medium rounded-full flex items-center gap-1.5 w-fit backdrop-blur-md ${
+                      selectedProject.status === 'Completed'
+                        ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-300'
+                        : 'bg-amber-500/20 border-amber-500/30 text-amber-300'
+                    }`}>
+                      {selectedProject.status === 'Completed' ? <CheckCircle2 size={14} /> : <Clock size={14} />}
+                      {selectedProject.status}
                     </span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
