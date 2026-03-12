@@ -1,0 +1,102 @@
+[
+    {
+        "image":"1.jpeg",
+        "title":"Landing Page",
+        "desctiprion":"First page after user visits the page"
+    },
+    {
+        "image":"2.jpeg",
+        "title":"Login Page",
+        "desctiprion":"User login page"
+    },
+    {
+        "image":"3.jpeg",
+        "title":"Registration",
+        "desctiprion":"User registration page"
+    },
+    {
+        "image":"4.jpeg",
+        "title":"Post Login Landing Page",
+        "desctiprion":"Actual landing page that shows different genres"
+    },
+    {
+        "image":"5.jpeg",
+        "title":"Post Login Landing Page Extended",
+        "desctiprion":"Extended part of actual landing page that shows different events"
+    },
+    {
+        "image":"6.jpeg",
+        "title":"Event Details Page",
+        "desctiprion":"This page show the details of the event selected by the user"
+    },
+    {
+        "image":"7.jpeg",
+        "title":"Event Booking Form",
+        "desctiprion":"This pages takes the user information to book the event"
+    },
+    {
+        "image":"8.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"9.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"10.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"11.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"12.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"13.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"14.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"15.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"16.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"17.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"18.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"19.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    },
+    {
+        "image":"20.jpeg",
+        "title":"Dashboard",
+        "desctiprion":"Project Dashboard"
+    }
+]
