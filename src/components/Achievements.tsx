@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Trophy, Award, Target, BookOpen, Maximize2, X } from 'lucide-react';
 
+import awsJobSimImg from './aws-job-sim.jpg';
+import genAiCertImg from './gen-ai-cert.jpg';
+import postmanImg from './postman.png';
+import gitGithubImg from './git-and-github.jpeg';
+
 const certifications = [
   {
     title: "AWS - Solutions Architecture Job Simulation",
     issuer: "Forage / AWS",
-    image: "src/components/aws-job-sim.jpg",
+    image: awsJobSimImg,
     date: "Dec 12 2025"
   },
 
@@ -25,19 +30,19 @@ const certifications = [
   {
     title: "Career Essentials in Generative AI learning path by Microsoft & LinkedIn!",
     issuer: "LinkedIn Learning",
-    image: "src/components/gen-ai-cert.jpg",
+    image: genAiCertImg,
     date: "Aug 17 2025"
   },
   {
     title: "Postman API Fundamentals Student Expert – LetsUpgrade",
     issuer: "Postman",
-    image: "src/components/postman.png",
+    image: postmanImg,
     date: "July 14 2024"
   },
   {
     title: "Git and Github Bootcamp",
     issuer: "Lets Upgrade",
-    image: "src/components/git-and-github.jpeg",
+    image: gitGithubImg,
     date: "June 19 2024"
   }
 

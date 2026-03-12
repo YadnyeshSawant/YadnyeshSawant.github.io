@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FolderGit2, ExternalLink, Github, Code2, Calendar, User, CheckCircle2, X, Image as ImageIcon, Linkedin, Users, ChevronLeft, ChevronRight } from 'lucide-react';
-import bookAndJoyScreenshots from './bookandjoyimages/description.json';
-import wellnessTrackerScreenshots from './wellnesstrackerimages/description.json';
-import executorScreenshots from './executorimages/description.json';
+import bookAndJoyScreenshots from '../../public/bookandjoyimages/description.json';
+import wellnessTrackerScreenshots from '../../public/wellnesstrackerimages/description.json';
+import executorScreenshots from '../../public/executorimages/description.json';
 const screenshotsMap: Record<string, any[]> = {
-  "src/components/bookandjoyimages": bookAndJoyScreenshots,
-  "src/components/wellnesstrackerimages": wellnessTrackerScreenshots,
-  "src/components/executorimages": executorScreenshots
+  "bookandjoyimages": bookAndJoyScreenshots,
+  "wellnesstrackerimages": wellnessTrackerScreenshots,
+  "executorimages": executorScreenshots
 };
 
 const projectsData = [
@@ -23,7 +23,7 @@ const projectsData = [
     liveDemo: "",
     sourceCode: "https://github.com/theujwalthakare/aaomile",
     features: "User Authentication: Secure login and account management for both attendees and event organizers. Event Listing & Categorization: Events classified based on genre Music, Education, Sports, etc. Ticket Booking & Generation: Digital tickets with QR codes for easy entry validation. Event Management Dashboard: Organizers can create, edit, and delete events. Attendee Tracking: Organizers can manage attendees and track registrations. Event Notifications: Users receive event reminders and updates. Admin Panel: A centralized dashboard for monitoring events and users.",
-    projectScreenshotsFolder:"src/components/bookandjoyimages",
+    projectScreenshotsFolder:"bookandjoyimages",
     contributors: [
       { name: "Ujwal Thakare", linkedin: "https://www.linkedin.com/in/ujwal-thakare-300b25264/", avatar: "", role: "Fronend Developer" },
       { name: "Yadnyesh Sawant", linkedin: "https://www.linkedin.com/in/yadnyesh-sawant/", avatar: "", role: "Backend Developer" }
@@ -41,7 +41,7 @@ const projectsData = [
     liveDemo: "#",
     sourceCode: "https://github.com/YadnyeshSawant/Installers/releases/tag/v2.1.1-beta",
     features:"File Explorer Mode: Tree-based navigation system that allows users to browse script and input directories with options to create, edit, rename, move, or delete files and folders. Advanced Code Editor: Built-in editor with features like find and replace, automatic Python indentation, undo/redo functionality, and error highlighting for easier debugging. Modern User Interface: Sleek dark theme with redesigned panels for file management, execution controls, and version control to improve usability. Global File Search: Search bar that allows users to quickly locate scripts and input files by name. Status Bar Information: Displays the currently loaded script and error count from the last script execution. Git Version Control Integration: Built-in support for Git commands such as add, commit, pull, and push, along with options to open Git Bash and view project history using Git Log. Recent Folder Access: Quick access to recently opened script or input directories for faster project navigation. Customizable Settings: Adjustable editor preferences including font size, tab spacing, keyboard shortcuts, and application behavior. Dependency Check & Startup Screen: The application verifies required dependencies such as Python and Git during startup and provides a loading screen for better feedback. Window Reload Option: Allows users to restart the application easily from the settings panel.",
-    projectScreenshotsFolder:"src/components/executorimages",
+    projectScreenshotsFolder:"executorimages",
     contributors: [{ name: "Yadnyesh Sawant", linkedin: "https://www.linkedin.com/in/yadnyesh-sawant/", avatar: "", role: "Java Developer" },]
   },
   {
@@ -85,7 +85,7 @@ const projectsData = [
     liveDemo: "",
     sourceCode: "https://github.com/theujwalthakare/aaomile",
     features: "User Authentication: Secure user registration, login, and logout functionality with session management. Daily Wellness Logging: Users can record daily health metrics including steps, water intake, sleep hours, and mood. Health Score Calculation: The system analyzes the user's daily wellness inputs such as sleep duration, water intake, steps, and activity levels to generate a health score out of 100, providing users with a quick summary of their overall daily wellness status. Dashboard Overview: A centralized dashboard where users can view their daily wellness data. Relational Data Management: Structured database design with relationships between users, daily logs and wellness metrics. Session Management: Maintains logged-in user sessions to ensure secure and personalized access. Modular MVC Architecture: Application structured using Model-View-Controller design pattern with Servlets, JSP, Beans, and DAO layers for maintainable development.",
-    projectScreenshotsFolder:"src/components/wellnesstrackerimages",
+    projectScreenshotsFolder:"wellnesstrackerimages",
     contributors: [{ name: "Dr. Dinesh Banswal", linkedin: "https://www.linkedin.com/in/dinesh-banswal/", avatar: "", role: "Faculty Project Mentor" },
     { name: "Rujuta Dani", linkedin: "https://www.linkedin.com/in/rujuta-dani-b000662b3/", avatar: "", role: "Full Stack Developer" },
     { name: "Yadnyesh Sawant", linkedin: "https://www.linkedin.com/in/yadnyesh-sawant/", avatar: "", role: "Technical Advisor" },

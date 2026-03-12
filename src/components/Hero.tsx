@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
             >
               View Journey <ChevronDown size={18} />
             </a>
-            <a href="src/components/Yadnyesh_Resume.pdf" target ="_blank">  <button
+            <a href="Yadnyesh_Resume.pdf" target ="_blank">  <button
               className="px-6 py-3 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-white rounded-lg font-medium transition-all flex items-center gap-2 backdrop-blur-sm"
               
             >
@@ -70,7 +70,7 @@ export const Hero: React.FC = () => {
               <motion.img 
                 whileHover={{ scale: 2.15 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                src={"src/components/profile.jpeg"} 
+                src={"profile.jpeg"} 
                 alt="Yadnyesh Sawant" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
