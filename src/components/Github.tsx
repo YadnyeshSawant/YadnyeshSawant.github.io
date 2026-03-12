@@ -233,21 +233,12 @@ export function Github() {
                   </div>
                   <h4 className="text-xl font-bold">Contribution Heatmap</h4>
                 </div>
-                <div className="pb-2 bg-black/20 rounded-xl p-4 relative">
-                  <svg width="0" height="0" className="absolute">
-                    <defs>
-                      <filter id="round-cells">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="blur" />
-                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-                        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-                      </filter>
-                    </defs>
-                  </svg>
+                <div className="pb-2 bg-black/20 rounded-xl p-4 relative overflow-x-auto">
                   <img
                     src={`https://ghchart.rshah.org/22c33e/${username}`}
                     alt={`${username}'s GitHub Contributions`}
-                    className="w-full"
-                    style={{ filter: 'url(#round-cells) invert(0.85) hue-rotate(160deg) brightness(1.2) contrast(1.2)' }}
+                    className="w-full min-w-[600px]"
+                    style={{ filter: 'invert(1) hue-rotate(180deg) brightness(1.5)' }}
                     referrerPolicy="no-referrer"
                   />
                 </div>
