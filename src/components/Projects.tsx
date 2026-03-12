@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FolderGit2, ExternalLink, Github, Code2, Calendar, User, CheckCircle2, X, Image as ImageIcon, Linkedin, Users, ChevronLeft, ChevronRight } from 'lucide-react';
-import bookAndJoyScreenshots from '../../public/bookandjoyimages/description.json';
-import wellnessTrackerScreenshots from '../../public/wellnesstrackerimages/description.json';
-import executorScreenshots from '../../public/executorimages/description.json';
+import bookAndJoyScreenshots from '../data/bookandjoyimages.json';
+import wellnessTrackerScreenshots from '../data/wellnesstrackerimages.json';
+import executorScreenshots from '../data/executorimages.json';
 const screenshotsMap: Record<string, any[]> = {
   "bookandjoyimages": bookAndJoyScreenshots,
   "wellnesstrackerimages": wellnessTrackerScreenshots,
