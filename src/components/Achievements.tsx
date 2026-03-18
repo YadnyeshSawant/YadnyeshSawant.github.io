@@ -6,8 +6,15 @@ import awsJobSimImg from './aws-job-sim.jpg';
 import genAiCertImg from './gen-ai-cert.jpg';
 import postmanImg from './postman.png';
 import gitGithubImg from './git-and-github.jpeg';
+import claudeCodeInActionImg from './claude-code-in-action.jpg';
 
 const certifications = [
+  {
+    title: "Claude Code In Action - Anthropic",
+    issuer: "Anthropic",
+    image: claudeCodeInActionImg,
+    date: "March 18 2026"
+  },
   {
     title: "AWS - Solutions Architecture Job Simulation",
     issuer: "Forage / AWS",
