@@ -20,6 +20,7 @@ export const Navbar: React.FC = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'GitHub', href: '#github' },
+    { name: 'LeetCode', href: '#leetcode' },
     { name: 'Leadership', href: '#leadership' },
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },

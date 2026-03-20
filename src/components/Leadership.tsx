@@ -4,6 +4,14 @@ import { Users, Calendar, Cpu, Award } from 'lucide-react';
 
 const leadershipData = [
   {
+    title: "SPR - Student Placement Representative",
+    event: "Placement Coordination",
+    organization: "MIT World Peace University, Pune",
+    year: "2025 - 2026",
+    icon: "groups",
+    description: "Serving as a Student Placement Representative (SPR) for the MCA batch. Responsible for coordinating between the placement cell and students, managing recruitment drives, and assisting peers in career development opportunities."
+  },
+  {
     title: "Stage & Discipline Committee Member - Spandan Cultural Fest MIT",
     event: "Spandan Cultural Fest",
     organization: "MIT World Peace University",

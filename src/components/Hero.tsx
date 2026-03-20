@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Download, ChevronDown, Github, Linkedin, Globe } from 'lucide-react';
+import Typewriter from 'typewriter-effect';
 // import profileImg from './profile.jpeg';
 
 export const Hero: React.FC = () => {
@@ -16,14 +17,28 @@ export const Hero: React.FC = () => {
           <h2 className="text-blue-400 font-mono mb-4 tracking-wider uppercase text-sm">
             Aspiring Software Developer
           </h2>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            Yadnyesh Sawant
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight min-h-[1.2em]">
+            <Typewriter
+              options={{
+                strings: [
+                  'Yadnyesh Sawant',
+                  'SPR - Student Placement Representative',
+                  'Software Developer',
+                  'Java Enthusiast',
+                  'Problem Solver'
+                ],
+                autoStart: true,
+                loop: true,
+                deleteSpeed: 50,
+                delay: 80,
+              }}
+            />
           </h1>
           <p className="text-lg md:text-2xl text-slate-400 max-w-2xl mb-8 leading-relaxed">
             Trying to turn <span className="font-mono text-blue-300">“System.out.println(‘Hello World’);”</span> into something that builds the future.
           </p>
           <p className="text-slate-400 max-w-2xl mb-10 leading-relaxed">
-            I’m pursuing my MCA at MIT World Peace University, Pune, and hold a B.Sc. in Computer Science (CGPA: 8.42) from KVN Naik College, Nashik. Skilled in Java, Spring Boot, SQL, and Web Development, I love creating practical, scalable, and user-focused solutions.
+            I’m pursuing my MCA at MIT World Peace University, Pune, where I also serve as a <b>Student Placement Representative (SPR)</b>. I hold a B.Sc. in Computer Science (CGPA: 8.42) from Pune University. Skilled in Java, Spring Boot, SQL, and Web Development, I love creating practical, scalable, and user-focused solutions.
           </p>
           
           <div className="flex flex-wrap md:flex-nowrap gap-4 mb-10 md:mb-12">

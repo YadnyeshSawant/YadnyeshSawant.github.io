@@ -16,12 +16,21 @@ import { Contact } from './components/Contact';
 import { Leadership } from './components/Leadership';
 import { Projects } from './components/Projects';
 import { Github } from './components/Github';
+import { LeetCode } from './components/LeetCode';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
 
   return (
     <div className="min-h-screen text-slate-200 font-sans selection:bg-blue-500/30">
+      <Toaster position="bottom-right" toastOptions={{
+        style: {
+          background: '#0f172a',
+          color: '#f1f5f9',
+          border: '1px solid #1e293b',
+        },
+      }} />
       <AnimatedBackground />
       
       <AnimatePresence>
@@ -41,6 +50,7 @@ export default function App() {
             <Skills />
             <Projects />
             <Github />
+            <LeetCode />
             <Leadership />
             <Achievements />
             <Contact />
