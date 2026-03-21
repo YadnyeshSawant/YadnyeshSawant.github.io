@@ -7,6 +7,8 @@ import genAiCertImg from './gen-ai-cert.jpg';
 import postmanImg from './postman.png';
 import gitGithubImg from './git-and-github.jpeg';
 import claudeCodeInActionImg from './claude-code-in-action.jpg';
+import agenticAI from './agenticAI.jpeg';
+import networkingBasics from './networkingBasics.jpeg';
 
 const certifications = [
   {
@@ -25,13 +27,13 @@ const certifications = [
   {
     title: "Workshop on Generative and Agentic AI",
     issuer: "Nova GenX Labs",
-    image: "https://media.licdn.com/dms/image/v2/D4D22AQG48BzDwHCcPw/feedshare-shrink_2048_1536/B4DZxs2kLmJIAk-/0/1771352769510?e=1773878400&v=beta&t=AoEv4lYDmolOMf8q6Ln7xWIKEjIpLLnpRJaKyPv9diY",
+    image: agenticAI,
     date: "Nov 27 2025"
   },
   {
     title: "Networking Basics – Cisco NetAcad",
     issuer: "Microsoft",
-    image: "https://media.licdn.com/dms/image/v2/D5622AQFKoxtyII1wcg/feedshare-shrink_2048_1536/B56ZqBahySI8Aw-/0/1763107808305?e=1773878400&v=beta&t=VjoiZtWBN-8xlN5PkjXv69of_WK7Ksx1oTBKejfJhuE",
+    image: networkingBasics,
     date: "Nov 14 2025"
   },
   {
