@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Code2, Trophy, Target, Zap, BarChart3, ExternalLink } from 'lucide-react';
+import { Code2, Trophy, Target, Zap, BarChart3, ExternalLink, X } from 'lucide-react';
 
 interface LeetCodeData {
   status: string;
@@ -706,7 +706,7 @@ export function LeetCode() {
                   onClick={() => setShowModal(false)}
                   className="p-2 hover:bg-white/5 rounded-full text-slate-400 hover:text-white transition-colors"
                 >
-                  <Zap size={20} className="rotate-45" />
+                  <X size={20} />
                 </button>
               </div>
 
