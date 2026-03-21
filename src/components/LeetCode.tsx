@@ -29,6 +29,14 @@ interface LeetCodeData {
   solutionCount?: number;
 }
 
+interface Submission {
+  title: string;
+  titleSlug: string;
+  timestamp: string;
+  statusDisplay: string;
+  lang: string;
+}
+
 function SubmissionHeatmap({ calendar }: { calendar: Record<string, number> }) {
   const [hoveredDay, setHoveredDay] = useState<{ date: string; count: number } | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
@@ -228,9 +236,38 @@ export function LeetCode() {
   const [data, setData] = useState<LeetCodeData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [submissions, setSubmissions] = useState<Submission[]>([]);
+  const [loadingSubmissions, setLoadingSubmissions] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const username = 'yadnyesh2018';
 
   const [lastFetched, setLastFetched] = useState<string | null>(null);
+
+  const fetchSubmissions = async () => {
+    setLoadingSubmissions(true);
+    try {
+      const response = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/submission?limit=1000`);
+      if (response.ok) {
+        const result = await response.json();
+        const allSubmissions = result.submission || [];
+        const acceptedSubmissions = allSubmissions
+          .filter((sub: any) => sub.statusDisplay === 'Accepted')
+          .sort((a: any, b: any) => parseInt(b.timestamp) - parseInt(a.timestamp));
+        setSubmissions(acceptedSubmissions);
+      }
+    } catch (err) {
+      console.error('Failed to fetch submissions:', err);
+    } finally {
+      setLoadingSubmissions(false);
+    }
+  };
+
+  const handleShowQuestions = () => {
+    setShowModal(true);
+    if (submissions.length === 0) {
+      fetchSubmissions();
+    }
+  };
 
   const fetchData = async () => {
     setLoading(true);
@@ -260,15 +297,12 @@ export function LeetCode() {
           const rawAcceptance = result.acceptanceRate || result.acceptance || result.acceptance_rate || 0;
           let parsedAcceptance = typeof rawAcceptance === 'string' ? parseFloat(rawAcceptance) : rawAcceptance;
           
-          // Handle cases where acceptance rate might be a decimal (e.g., 0.631 instead of 63.1)
           if (parsedAcceptance > 0 && parsedAcceptance < 1) {
             parsedAcceptance *= 100;
           }
 
-          // Handle submission calendar - some APIs return it differently
           let calendar = result.submissionCalendar || result.submission_calendar || {};
           
-          // If calendar is empty, try to fetch it specifically from alfa-leetcode-api
           if (Object.keys(calendar).length === 0) {
             try {
               const calRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/calendar`);
@@ -285,7 +319,6 @@ export function LeetCode() {
             try { calendar = JSON.parse(calendar); } catch (e) { calendar = {}; }
           }
 
-          // Fetch additional profile details from alfa-leetcode-api
           let profileDetails: any = {};
           try {
             const profileRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}`);
@@ -376,28 +409,32 @@ export function LeetCode() {
 
   if (!data) return null;
 
-  // Calculate percentages for the arc segments
   const totalSolved = data.totalSolved;
   const totalQuestions = data.totalQuestions;
   
-  // We'll use a 240-degree arc (from -210deg to 30deg)
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
   const arcLength = (circumference * 240) / 360;
   
-  // Ratios for the entire sections
-  const easySectionRatio = data.totalEasy / data.totalQuestions;
-  const mediumSectionRatio = data.totalMedium / data.totalQuestions;
-  const hardSectionRatio = data.totalHard / data.totalQuestions;
-
-  // Ratios for the solved parts
   const easySolvedRatio = data.easySolved / data.totalQuestions;
-  const mediumSolvedRatio = data.mediumSolved / data.totalQuestions;
-  const hardSolvedRatio = data.hardSolved / data.totalQuestions;
 
   return (
     <section id="leetcode" className="py-16 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+            LeetCode Stats
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            A deep dive into my problem-solving journey, algorithmic expertise, and consistent coding practice.
+          </p>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-6">
           {/* Profile Card */}
           <motion.div
@@ -406,11 +443,9 @@ export function LeetCode() {
             viewport={{ once: true }}
             className="lg:col-span-2 bg-[#1a1a1a] rounded-[1.5rem] p-5 border border-white/5 shadow-2xl relative overflow-hidden group flex flex-col h-full"
           >
-            {/* Background Decorative Element */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/5 rounded-full blur-2xl -mr-16 -mt-16 transition-colors group-hover:bg-yellow-500/10" />
             
             <div className="relative flex flex-col gap-4 items-center text-center flex-1">
-              {/* Avatar Section */}
               <div className="relative shrink-0">
                 <div className="absolute -inset-1 bg-gradient-to-tr from-yellow-500 via-orange-500 to-yellow-500 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity animate-pulse" />
                 <div className="relative p-1 bg-[#1a1a1a] rounded-full">
@@ -429,11 +464,10 @@ export function LeetCode() {
                 </div>
               </div>
 
-              {/* Info Section */}
               <div className="flex-1">
                 <div className="flex flex-col items-center gap-0.5 mb-2">
                   <h2 className="text-xl font-bold text-white tracking-tight">
-                    {data.name || username}
+                    {data.name || "Yadnyesh Sawant"}
                   </h2>
                   <span className="text-slate-500 font-mono text-[10px]">@{username}</span>
                 </div>
@@ -462,7 +496,6 @@ export function LeetCode() {
                 )}
               </div>
 
-              {/* Quick Stats Section */}
               <div className="grid grid-cols-2 gap-2 w-full">
                 <div className="bg-white/5 rounded-lg p-2 border border-white/5 hover:bg-white/10 transition-colors">
                   <p className="text-[8px] uppercase tracking-widest text-slate-500 mb-0.5">Global Rank</p>
@@ -475,7 +508,6 @@ export function LeetCode() {
               </div>
             </div>
 
-            {/* Bottom Bar */}
             <div className="mt-4 pt-3 border-t border-white/5 flex flex-col items-center gap-2">
               {lastFetched && (
                 <div className="flex items-center gap-3 text-[8px] text-slate-500">
@@ -501,16 +533,13 @@ export function LeetCode() {
             viewport={{ once: true }}
             className="lg:col-span-3 bg-[#1a1a1a] rounded-[1.5rem] p-6 border border-white/5 shadow-2xl h-full flex flex-col relative overflow-hidden group"
           >
-            {/* Background Glow */}
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#00b8a3]/5 blur-[80px] rounded-full group-hover:bg-[#00b8a3]/10 transition-colors duration-500" />
             
             <div className="flex-1 flex flex-col justify-center relative z-10">
               <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-center mb-6">
-                {/* Left Side: Arc Chart */}
                 <div className="xl:col-span-5 flex flex-col items-center justify-center relative">
                   <div className="relative w-44 h-44">
                     <svg className="w-full h-full transform rotate-[150deg]" viewBox="0 0 200 200">
-                      {/* Background Arcs */}
                       <circle
                         cx="100"
                         cy="100"
@@ -523,7 +552,6 @@ export function LeetCode() {
                         style={{ transformOrigin: 'center', transform: 'rotate(0deg)' }}
                       />
                       
-                      {/* Solved Segments with Glow */}
                       <filter id="glow">
                         <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                         <feMerge>
@@ -549,7 +577,6 @@ export function LeetCode() {
                         style={{ transformOrigin: 'center', transform: 'rotate(0deg)' }}
                       />
 
-                      {/* Individual Difficulty Segments (Thin overlay) */}
                       <circle
                         cx="100"
                         cy="100"
@@ -563,7 +590,6 @@ export function LeetCode() {
                       />
                     </svg>
 
-                    {/* Center Content */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                       <div className="flex flex-col items-center">
                         <span className="text-3xl font-bold text-white tracking-tighter leading-none">{data.totalSolved}</span>
@@ -576,7 +602,6 @@ export function LeetCode() {
                   </div>
                 </div>
 
-                {/* Right Side: Detailed Breakdown */}
                 <div className="xl:col-span-7 flex flex-col gap-4">
                   {[
                     { label: 'Easy', solved: data.easySolved, total: data.totalEasy, color: '#00b8a3', bg: 'bg-[#00b8a3]' },
@@ -606,7 +631,6 @@ export function LeetCode() {
               </div>
             </div>
 
-            {/* Integrated Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-auto pt-5 border-t border-white/5">
               {[
                 { label: 'Acceptance', value: `${data.acceptanceRate}%` },
@@ -640,18 +664,107 @@ export function LeetCode() {
           </motion.div>
         )}
 
-        {/* Profile Link */}
-        <div className="mt-6 text-center">
-          <a
+        {/* Action Buttons */}
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <motion.a
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             href={`https://leetcode.com/u/${username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-yellow-500 transition-colors group"
+            className="flex items-center gap-2 px-6 py-3 bg-yellow-500 text-slate-950 rounded-xl font-bold hover:bg-yellow-400 transition-all shadow-lg shadow-yellow-500/10"
           >
-            <span className="text-xs font-medium">View full profile on LeetCode</span>
-            <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+            View Full Profile <ExternalLink size={18} />
+          </motion.a>
+          
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleShowQuestions}
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl font-bold hover:bg-white/10 transition-all"
+          >
+            View Recent Submissions 
+          </motion.button>
         </div>
+
+        {/* Solved Questions Modal */}
+        {showModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-[#1a1a1a] w-full max-w-2xl max-h-[80vh] rounded-[2rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+            >
+              <div className="p-6 border-b border-white/5 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-yellow-500/10 rounded-lg text-yellow-500">
+                    <Code2 size={20} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Accepted Submissions</h3>
+                </div>
+                <button 
+                  onClick={() => setShowModal(false)}
+                  className="p-2 hover:bg-white/5 rounded-full text-slate-400 hover:text-white transition-colors"
+                >
+                  <Zap size={20} className="rotate-45" />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-6 scrollbar-hide">
+                {loadingSubmissions ? (
+                  <div className="flex flex-col items-center justify-center py-12 gap-4">
+                    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-yellow-500"></div>
+                    <p className="text-slate-400 text-sm">Loading your achievements...</p>
+                  </div>
+                ) : submissions.length > 0 ? (
+                  <div className="grid gap-3">
+                    {submissions.map((sub, idx) => {
+                      const isAccepted = sub.statusDisplay === 'Accepted';
+                      const statusColor = isAccepted ? 'text-emerald-500 bg-emerald-500/10' : 
+                                        sub.statusDisplay === 'Wrong Answer' ? 'text-red-500 bg-red-500/10' :
+                                        sub.statusDisplay === 'Time Limit Exceeded' ? 'text-orange-500 bg-orange-500/10' :
+                                        'text-slate-400 bg-white/5';
+                      
+                      return (
+                        <a
+                          key={idx}
+                          href={`https://leetcode.com/problems/${sub.titleSlug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/10 hover:border-white/10 transition-all group"
+                        >
+                          <div className="flex flex-col gap-1">
+                            <span className="text-sm font-bold text-white group-hover:text-yellow-500 transition-colors">
+                              {sub.title}
+                            </span>
+                            <div className="flex items-center gap-3 text-[10px] text-slate-500">
+                              <span className="flex items-center gap-1 uppercase tracking-wider">
+                                <Zap size={10} className={isAccepted ? "text-emerald-500" : "text-slate-500"} /> {sub.lang}
+                              </span>
+                              <span>•</span>
+                              <span>{new Date(parseInt(sub.timestamp) * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                            </div>
+                          </div>
+                          <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${statusColor}`}>
+                            {sub.statusDisplay}
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-slate-500">No recent submissions found.</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="p-4 bg-white/5 border-t border-white/5 text-center">
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest">Showing all accepted submissions</p>
+              </div>
+            </motion.div>
+          </div>
+        )}
       </div>
     </section>
   );
