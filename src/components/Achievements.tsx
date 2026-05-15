@@ -13,7 +13,7 @@ import networkingBasics from './networkingBasics.jpeg';
 
 const certifications = [
   {
-    title: "MongoDB Overview",
+    title: "MongoDB Overview: Core Concepts and Architecture",
     issuer: "Anthropic",
     image: mongoDbOverview,
     date: "May 15 2026"
