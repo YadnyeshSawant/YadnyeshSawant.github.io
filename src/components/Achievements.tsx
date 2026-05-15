@@ -7,10 +7,17 @@ import genAiCertImg from './gen-ai-cert.jpg';
 import postmanImg from './postman.png';
 import gitGithubImg from './git-and-github.jpeg';
 import claudeCodeInActionImg from './claude-code-in-action.jpg';
+import mongoDbOverview from './mongodb_overview.jpg';
 import agenticAI from './agenticAI.jpeg';
 import networkingBasics from './networkingBasics.jpeg';
 
 const certifications = [
+  {
+    title: "MongoDB Overview",
+    issuer: "Anthropic",
+    image: mongoDbOverview,
+    date: "May 15 2026"
+  },
   {
     title: "Claude Code In Action - Anthropic",
     issuer: "Anthropic",
